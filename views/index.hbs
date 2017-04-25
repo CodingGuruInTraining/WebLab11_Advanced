@@ -1,16 +1,28 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
 
 <div id="newLake">
     <h3>Add a new Lake to collection</h3>
 
+    <div id="messagesDiv">
+        {{#each messages.error}}
+            <p class="error_msg">{{this}}</p>
+        {{/each}}
+    </div>
+
     <form action="/" method="POST">
-        Lake Name: <input type="text" name="thelakename">
-        Run Time: <input type="number" name="theruntime">
+        Lake Name: <input name="lakeName" type="text">
+        Run Time: <input name="runTimes" type="number">
+        <input type="submit" name="addLake" value="Add new Lake">
     </form>
 </div>
 
 <div id="oldLakes">
     <h3>Here are all the lakes you have run</h3>
 
+    {{#each lakes}}
+        <p>Lake Name: {{this.lakeName}}</p>
+        <p>Best Time: {{this.runTimes}}</p><br>
+    {{else}}
+        <p>You haven't run any lakes...slacker</p>
+    {{/each}}
 </div>

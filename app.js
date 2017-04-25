@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var flash = require('express-flash');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -14,6 +16,10 @@ var url = 'mongodb://localhost:27017/lakes';
 mongoose.connect(url);
 
 var app = express();
+
+// Adds some sort of security.
+app.use(session({secret: 'no one knows'}));
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
