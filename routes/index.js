@@ -22,6 +22,7 @@ router.post('/', function( req, res, next){
             lakeData[field] = req.body[field];
         }
     }
+
     var lake = Lake(lakeData);
     lake.save(function(err, newLake){
         if (err) {
@@ -31,10 +32,6 @@ router.post('/', function( req, res, next){
                     messages.push(err.errors[err_name].message);
                 }
                 req.flash('error', messages);
-                return res.redirect('/')
-            }
-            if (err.code == 11000) {
-                req.flash('error', 'There is already a lake by that name');
                 return res.redirect('/')
             }
             return next(err);

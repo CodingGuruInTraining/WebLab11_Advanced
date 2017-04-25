@@ -10,8 +10,8 @@
     </div>
 
     <form action="/" method="POST">
-        Lake Name: <input name="lakeName" type="text">
-        Run Time: <input name="runTimes" type="number">
+        Lake Name: <input name="lakeName" type="text" required>
+        Run Time: <input name="runTimes" type="number" min="1">
         <input type="submit" name="addLake" value="Add new Lake">
     </form>
 </div>
@@ -21,7 +21,15 @@
 
     {{#each lakes}}
         <p>Lake Name: {{this.lakeName}}</p>
-        <p>Best Time: {{this.runTimes}}</p><br>
+        <p>Best Time: {{this.runTimes}}</p>
+        <p>All Times:</p>
+        <ul>
+            {{#each this.runTimes}}
+                <li>{{this}}</li>
+            {{else}}
+                <li>Still no runs</li>
+            {{/each}}
+        </ul>
     {{else}}
         <p>You haven't run any lakes...slacker</p>
     {{/each}}
