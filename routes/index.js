@@ -56,6 +56,13 @@ router.post('/addTime', function(req, res, next) {
             return next(new Error('Lake with id ' + req.body._id + ' not found'))
         }
         lake.runTimes.push(req.body.runTime);
+
+        lake.runTimes.sort(function(a, b) {
+            if (a < b) { return -1; }
+            if (a > b) { return 1; }
+            return 0;
+        });
+
         lake.save(function(err) {
             if (err) {
                 if (err.name == 'ValidationError') {
