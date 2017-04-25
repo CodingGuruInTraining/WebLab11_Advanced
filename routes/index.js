@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
             return next(err);
         }
         res.render('index', {title: 'Lake Runner', lakes: lakes});
-    })
+    });
   // res.render('index', { title: 'Lake Runner' });
 });
 
@@ -22,6 +22,9 @@ router.post('/', function( req, res, next){
             lakeData[field] = req.body[field];
         }
     }
+
+    lakeData.runDate = Date.now();
+    console.log(lakeData);
 
     var lake = Lake(lakeData);
     lake.save(function(err, newLake){

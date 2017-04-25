@@ -11,7 +11,8 @@
 
     <form action="/" method="POST">
         Lake Name: <input name="lakeName" type="text" required>
-        Run Time: <input name="runTimes" type="number" min="1">
+        Run Time: <input name="runTimes" type="number" min="1" step="any">
+        <input type="hidden" name="runDate">
         <input type="submit" name="addLake" value="Add new Lake">
     </form>
 </div>
@@ -26,7 +27,7 @@
         <p>All Times:</p>
         <ul>
             {{#each this.runTimes}}
-                <li>{{this}}</li>
+                <li>{{this}} on {{../runDate}}</li>
             {{else}}
                 <li>Still no runs</li>
             {{/each}}
@@ -34,7 +35,7 @@
 
         <p>Add new time</p>
         <form action="/addTime" method="POST">
-            <input name="runTime" type="number">
+            <input name="runTime" type="number" min="1" step="any">
             <input name="_id" type="hidden" value="{{this._id}}">
             <input name="lakeName" type="hidden" value="{{this.lakeName}}">
             <input name="add" type="submit" value="Add new time">
@@ -43,3 +44,7 @@
         <p>You haven't run any lakes...slacker</p>
     {{/each}}
 </div>
+
+
+<!--helped with foreach loop:-->
+<!--http://stackoverflow.com/questions/12297959/access-properties-of-the-parent-with-a-handlebars-each-loop-->
