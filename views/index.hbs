@@ -27,7 +27,7 @@
         <p>All Times:</p>
         <ul>
             {{#each this.runTimes}}
-                <li>{{this}} on {{../runDate}}</li>
+                <li>{{this}} minutes on {{dateFormatter ../runDate}}</li>
             {{else}}
                 <li>Still no runs</li>
             {{/each}}
